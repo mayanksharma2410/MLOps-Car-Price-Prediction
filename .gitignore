@@ -7,6 +7,7 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+venv_mlops/
 .Python
 build/
 develop-eggs/
