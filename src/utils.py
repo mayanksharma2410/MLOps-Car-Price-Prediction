@@ -24,3 +24,25 @@ def load_object(file_path):
         
     except Exception as e:
         raise CustomException(e, sys)
+    
+def evaluate_model(X_train, y_train, X_test, y_test, models):
+    try:
+        report = {}
+
+        for i in range(len(list(models))):
+            model = list(models.values())[i]
+            # grid_search = GridSearchCV(model, cv=3)
+            # grid_search.fit(X_train, y_train)
+
+            model.fit(X_train, y_train)
+
+            y_train_pred = model.predict(X_train)
+            y_test_pred = model.predict(X_test)
+
+            test_model_score = r2_score(y_test, y_test_pred)
+
+            report[list(models.keys())[i]] = test_model_score
+
+            return report
+    except Exception as e:
+        raise CustomException(e, sys)
